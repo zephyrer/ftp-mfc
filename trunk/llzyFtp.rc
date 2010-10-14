@@ -87,17 +87,17 @@ IDI_LED_OFF             ICON                    "res\\led_off.ico"
 
 IDR_MAINMENU MENU 
 BEGIN
-    POPUP "Server"
+    POPUP "服务器"
     BEGIN
-        MENUITEM "Start",                       ID_SERVER_START
-        MENUITEM "Stop",                        ID_SERVER_STOP
-        MENUITEM "User Account",                ID_USER_ACCOUNT
-        MENUITEM "Exit",                        ID_SERVER_EXIT
+        MENUITEM "启动",                          ID_SERVER_START
+        MENUITEM "停止",                          ID_SERVER_STOP
+        MENUITEM "用户帐户",                        ID_USER_ACCOUNT
+        MENUITEM "退出",                          ID_SERVER_EXIT
     END
-    POPUP "Help"
+    POPUP "帮助"
     BEGIN
-        MENUITEM "Book",                        ID_HELP_BOOK
-        MENUITEM "About",                       ID_HELP_ABOUT32786
+        MENUITEM "hiahia",                      ID_HELP_BOOK
+        MENUITEM "关于",                          ID_HELP_ABOUT32786
     END
 END
 
@@ -136,7 +136,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     LISTBOX         IDC_TRACE,0,0,315,170,LBS_SORT | LBS_OWNERDRAWVARIABLE | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Clear",IDC_CLEAR,122,179,50,14
+    PUSHBUTTON      "清除",IDC_CLEAR,122,179,50,14
 END
 
 IDD_PROPPAGE_ONLINE DIALOGEX 0, 0, 316, 198
@@ -144,6 +144,23 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     CONTROL         "",IDC_ONLINE_USERS,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,0,0,315,198
+END
+
+IDD_PROPPAGE_CONFIGURATION DIALOGEX 0, 0, 316, 198
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "端口:",IDC_STATIC,12,19,36,8
+    LTEXT           "最大用户数量:",IDC_STATIC,12,39,52,8
+    LTEXT           "连接保持时间:",IDC_STATIC,12,59,53,8
+    LTEXT           "欢迎信息:",IDC_STATIC,12,79,36,8
+    LTEXT           "再见信息:",IDC_STATIC,12,99,36,8
+    EDITTEXT        IDC_PORT,104,19,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MAX_USERS,104,39,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TIMEOUT,104,59,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WELCOME_MSG,104,79,148,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GOODBYE_MSG,104,99,148,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "应用",IDC_APPLY,115,175,50,14
 END
 
 
@@ -158,6 +175,11 @@ BEGIN
     IDD_PROPPAGE_TRACE, DIALOG
     BEGIN
         BOTTOMMARGIN, 193
+    END
+
+    IDD_PROPPAGE_CONFIGURATION, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 197
     END
 END
 #endif    // APSTUDIO_INVOKED
