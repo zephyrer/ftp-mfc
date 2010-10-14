@@ -76,6 +76,9 @@ IDI_LOG                 ICON                    "res\\log.ico"
 IDI_STATISTICS          ICON                    "res\\statistics.ico"
 IDI_ONLINE_USERS        ICON                    "res\\users.ico"
 IDI_SECURITY            ICON                    "res\\settings.ico"
+IDI_LED_RED             ICON                    "res\\led_red.ico"
+IDI_LED_GREEN           ICON                    "res\\led_gree.ico"
+IDI_LED_OFF             ICON                    "res\\led_off.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -86,12 +89,59 @@ IDR_MAINMENU MENU
 BEGIN
     POPUP "Server"
     BEGIN
-        MENUITEM "Start",                       ID_INFOBAR_SERVERTRACE
-        MENUITEM "Stop",                        ID_INFOBAR_ONLINEUSERS
+        MENUITEM "Start",                       ID_SERVER_START
+        MENUITEM "Stop",                        ID_SERVER_STOP
         MENUITEM "Account Wizard",              ID_INFOBAR_CONFIGRATION
         MENUITEM "User Account",                ID_INFOBAR_STATICES
-        MENUITEM "Exit",                        ID_INFOBAR_SECURITY
+        MENUITEM "Exit",                        ID_SERVER_EXIT
     END
+    POPUP "Help"
+    BEGIN
+        MENUITEM "Book",                        ID_HELP_BOOK
+        MENUITEM "About",                       ID_HELP_ABOUT32786
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR1 TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_SERVER_START
+    BUTTON      ID_SERVER_STOP
+    BUTTON      ID_USER_ACCOUNTS
+    BUTTON      ID_HELP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR1            BITMAP                  "res\\toolbar1.bmp"
+IDB_TOOLBARCOLOR        BITMAP                  "res\\toolbare.bmp"
+IDB_TOOLBARDISABLE      BITMAP                  "res\\toolbard.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_SERVER_START         "Start..."
+    ID_INDICATOR_DATA_RECEIVED "0 bytes received"
+    ID_INDICATOR_ONLINELED  "  "
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_OFFLINELED "  "
+    ID_INDICATOR_DATA_SEND  "0 bytes sent"
 END
 
 #endif    // Chinese (P.R.C.) resources
@@ -113,14 +163,14 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 //
 
 IDD_LLZYFTP_DIALOG DIALOGEX 0, 0, 370, 201
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 EXSTYLE WS_EX_APPWINDOW
-CAPTION "llzyFtp"
+CAPTION "ftp-mfc"
 MENU IDR_MAINMENU
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_OUTLOOKBAR,"SysListView32",WS_BORDER | WS_TABSTOP,1,1,67,199
-    CONTROL         "",IDC_DIALOG_AREA,"Static",SS_GRAYFRAME,69,16,300,185,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_OUTLOOKBAR,"SysListView32",WS_BORDER | WS_TABSTOP,1,0,67,200
+    CONTROL         "",IDC_DIALOG_AREA,"Static",SS_GRAYFRAME,70,16,300,185,WS_EX_TRANSPARENT
 END
 
 
