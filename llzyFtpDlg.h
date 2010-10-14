@@ -6,6 +6,8 @@
 #include "TracePage.h"
 #include "OnlineUsersPage.h"
 #include "ConfigurationPage.h"
+#include "StatisticsPage.h"
+#include "SecurityPage.h"
 
 // CllzyFtpDlg dialog
 class CllzyFtpDlg : public CDialog
@@ -18,6 +20,8 @@ public:
 	CTracePage	m_TracePage;
 	COnlineUsersPage	m_OnlineUsersPage;
 	CConfigurationPage	m_ConfigurationPage;
+	CStatisticsPage		m_StatisticsPage;	
+	CSecurityPage		m_SecurityPage;
 // Dialog Data
 	enum { IDD = IDD_LLZYFTP_DIALOG };
 
