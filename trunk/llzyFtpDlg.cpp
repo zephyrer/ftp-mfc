@@ -69,6 +69,10 @@ BOOL CllzyFtpDlg::OnInitDialog()
 	m_TracePage.Create(IDD_PROPPAGE_TRACE,this);
 	m_OnlineUsersPage.Create(IDD_PROPPAGE_ONLINE,this);
 	m_ConfigurationPage.Create(IDD_PROPPAGE_CONFIGURATION,this);
+	m_StatisticsPage.Create(IDD_PROPPAGE_STATISTICS,this);
+	m_SecurityPage.Create(IDD_PROPPAGE_SECURITY,this);
+
+	ActivatePage(0);
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
@@ -137,6 +141,8 @@ void CllzyFtpDlg::MoveChilds()
 	m_TracePage.MoveWindow(rcDlgs); 
 	m_OnlineUsersPage.MoveWindow(rcDlgs);
 	m_ConfigurationPage.MoveWindow(rcDlgs);
+	m_StatisticsPage.MoveWindow(rcDlgs);
+	m_SecurityPage.MoveWindow(rcDlgs);
 }
 
 void CllzyFtpDlg::ActivatePage(int nIndex)
@@ -147,26 +153,36 @@ void CllzyFtpDlg::ActivatePage(int nIndex)
 		m_TracePage.ShowWindow(SW_SHOW);
 		m_OnlineUsersPage.ShowWindow(SW_HIDE);
 		m_ConfigurationPage.ShowWindow(SW_HIDE);
+		m_StatisticsPage.ShowWindow(SW_HIDE);
+		m_SecurityPage.ShowWindow(SW_HIDE);
 		break;
 	case 1:
 		m_TracePage.ShowWindow(SW_HIDE);	
 		m_OnlineUsersPage.ShowWindow(SW_SHOW);
 		m_ConfigurationPage.ShowWindow(SW_HIDE);
+		m_StatisticsPage.ShowWindow(SW_HIDE);
+		m_SecurityPage.ShowWindow(SW_HIDE);
 		break;
 	case 2:
 		m_TracePage.ShowWindow(SW_HIDE);	
 		m_OnlineUsersPage.ShowWindow(SW_HIDE);
 		m_ConfigurationPage.ShowWindow(SW_SHOW);
+		m_StatisticsPage.ShowWindow(SW_HIDE);
+		m_SecurityPage.ShowWindow(SW_HIDE);
 		break;
 	case 3:
 		m_TracePage.ShowWindow(SW_HIDE);	
 		m_OnlineUsersPage.ShowWindow(SW_HIDE);
 		m_ConfigurationPage.ShowWindow(SW_HIDE);
+		m_StatisticsPage.ShowWindow(SW_SHOW);
+		m_SecurityPage.ShowWindow(SW_HIDE);
 		break;
 	case 4:
 		m_TracePage.ShowWindow(SW_HIDE);	
 		m_OnlineUsersPage.ShowWindow(SW_HIDE);
 		m_ConfigurationPage.ShowWindow(SW_HIDE);
+		m_StatisticsPage.ShowWindow(SW_HIDE);
+		m_SecurityPage.ShowWindow(SW_SHOW);
 		break;
 	default:
 		break;
@@ -309,7 +325,7 @@ BOOL CllzyFtpDlg::CreateStatusbar()
 	if(m_wndStatusBar.Create(this))
 	{
 		m_wndStatusBar.SetIndicators(auIDStatusBar,sizeof(auIDStatusBar)/sizeof(UINT));
-		m_wndStatusBar.SetPaneText(0,"FTP Server is offline",TRUE);
+		m_wndStatusBar.SetPaneText(0,"FTP Server Î´Æô¶¯",TRUE);
 		m_wndStatusBar.SetPaneInfo(0,m_wndStatusBar.GetItemID(0),SBPS_STRETCH,NULL);
 
 		SetOnlineLed(FALSE);
