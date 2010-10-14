@@ -24,11 +24,18 @@
 #define ID_INDICATOR_OFFLINELED         151
 #define IDD_PROPPAGE_ONLINE             151
 #define ID_INDICATOR_DATA_SEND          152
+#define IDD_PROPPAGE_CONFIGURATION      152
 #define IDC_OUTLOOKBAR                  1000
 #define IDC_DIALOG_AREA                 1001
 #define IDC_CLEAR                       1004
-#define IDC_LIST1                       1005
 #define IDC_ONLINE_USERS                1005
+#define IDC_PORT                        1006
+#define IDC_MAX_USERS                   1007
+#define IDC_TIMEOUT                     1008
+#define IDC_WELCOME_MSG                 1009
+#define IDC_GOODBYE_MSG                 1010
+#define IDC_BUTTON1                     1011
+#define IDC_APPLY                       1011
 #define ID_INFOBAR_SERVERTRACE          32771
 #define ID_INFOBAR_ONLINEUSERS          32772
 #define ID_INFOBAR_CONFIGRATION         32773
@@ -49,7 +56,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        151
 #define _APS_NEXT_COMMAND_VALUE         32790
-#define _APS_NEXT_CONTROL_VALUE         1006
+#define _APS_NEXT_CONTROL_VALUE         1012
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

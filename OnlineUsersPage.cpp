@@ -30,10 +30,10 @@ BOOL COnlineUsersPage::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	m_OnlineUsers.InsertColumn(0, "ThreadID");		
-	m_OnlineUsers.InsertColumn(1, "Username");	
-	m_OnlineUsers.InsertColumn(2, "IP Adress");	
-	m_OnlineUsers.InsertColumn(3, "Login Time");
+	m_OnlineUsers.InsertColumn(0, "线程ID");		
+	m_OnlineUsers.InsertColumn(1, "用户名");	
+	m_OnlineUsers.InsertColumn(2, "IP 地址");	
+	m_OnlineUsers.InsertColumn(3, "登录时间");
 
 	DWORD dwStyle = m_OnlineUsers.GetExtendedStyle();
 	dwStyle |= LVS_EX_FULLROWSELECT;

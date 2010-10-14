@@ -68,6 +68,7 @@ BOOL CllzyFtpDlg::OnInitDialog()
 
 	m_TracePage.Create(IDD_PROPPAGE_TRACE,this);
 	m_OnlineUsersPage.Create(IDD_PROPPAGE_ONLINE,this);
+	m_ConfigurationPage.Create(IDD_PROPPAGE_CONFIGURATION,this);
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
@@ -135,6 +136,7 @@ void CllzyFtpDlg::MoveChilds()
 	ScreenToClient(rcDlgs);
 	m_TracePage.MoveWindow(rcDlgs); 
 	m_OnlineUsersPage.MoveWindow(rcDlgs);
+	m_ConfigurationPage.MoveWindow(rcDlgs);
 }
 
 void CllzyFtpDlg::ActivatePage(int nIndex)
@@ -144,19 +146,27 @@ void CllzyFtpDlg::ActivatePage(int nIndex)
 	case 0:
 		m_TracePage.ShowWindow(SW_SHOW);
 		m_OnlineUsersPage.ShowWindow(SW_HIDE);
+		m_ConfigurationPage.ShowWindow(SW_HIDE);
 		break;
 	case 1:
 		m_TracePage.ShowWindow(SW_HIDE);	
 		m_OnlineUsersPage.ShowWindow(SW_SHOW);
+		m_ConfigurationPage.ShowWindow(SW_HIDE);
 		break;
 	case 2:
 		m_TracePage.ShowWindow(SW_HIDE);	
+		m_OnlineUsersPage.ShowWindow(SW_HIDE);
+		m_ConfigurationPage.ShowWindow(SW_SHOW);
 		break;
 	case 3:
 		m_TracePage.ShowWindow(SW_HIDE);	
+		m_OnlineUsersPage.ShowWindow(SW_HIDE);
+		m_ConfigurationPage.ShowWindow(SW_HIDE);
 		break;
 	case 4:
 		m_TracePage.ShowWindow(SW_HIDE);	
+		m_OnlineUsersPage.ShowWindow(SW_HIDE);
+		m_ConfigurationPage.ShowWindow(SW_HIDE);
 		break;
 	default:
 		break;
@@ -248,11 +258,11 @@ void CllzyFtpDlg::SetupOutlookBar()
 	// insert items
 	m_OutlookBar.InsertColumn(0, "OutlookBar");
 
-	m_OutlookBar.InsertItem(0, "Server Log", 0);
-	m_OutlookBar.InsertItem(1, "Online Users", 1);
-	m_OutlookBar.InsertItem(2, "Configuration", 2);
-	m_OutlookBar.InsertItem(3, "Statistics", 3);
-	m_OutlookBar.InsertItem(4, "Security", 4);
+	m_OutlookBar.InsertItem(0, "服务器日志", 0);
+	m_OutlookBar.InsertItem(1, "在线用户", 1);
+	m_OutlookBar.InsertItem(2, "设置", 2);
+	m_OutlookBar.InsertItem(3, "统计", 3);
+	m_OutlookBar.InsertItem(4, "安全配置", 4);
 }
 
 /************************************************************************/
