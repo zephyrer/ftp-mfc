@@ -43,6 +43,9 @@
 #define IDC_REMOVE_BLOCK                1016
 #define IDC_LIST1                       1017
 #define IDC_BLOCKEDLIST                 1018
+#define IDC_IPADDRESS1                  1019
+#define IDC_EDIT2                       1020
+#define IDC_IPADDRESS2                  1020
 #define ID_INFOBAR_SERVERTRACE          32771
 #define ID_INFOBAR_ONLINEUSERS          32772
 #define ID_INFOBAR_CONFIGRATION         32773
@@ -63,7 +66,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        151
 #define _APS_NEXT_COMMAND_VALUE         32790
-#define _APS_NEXT_CONTROL_VALUE         1019
+#define _APS_NEXT_CONTROL_VALUE         1020
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
