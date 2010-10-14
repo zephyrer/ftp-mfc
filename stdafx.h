@@ -24,6 +24,7 @@
 
 #include <afxdisp.h>        // MFC Automation classes
 
+#include <afxsock.h>		// MFC socket extensions
 
 
 #ifndef _AFX_NO_OLE_SUPPORT
