@@ -67,6 +67,7 @@ BOOL CllzyFtpDlg::OnInitDialog()
 
 
 	m_TracePage.Create(IDD_PROPPAGE_TRACE,this);
+	m_OnlineUsersPage.Create(IDD_PROPPAGE_ONLINE,this);
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
@@ -133,6 +134,7 @@ void CllzyFtpDlg::MoveChilds()
 
 	ScreenToClient(rcDlgs);
 	m_TracePage.MoveWindow(rcDlgs); 
+	m_OnlineUsersPage.MoveWindow(rcDlgs);
 }
 
 void CllzyFtpDlg::ActivatePage(int nIndex)
@@ -141,9 +143,11 @@ void CllzyFtpDlg::ActivatePage(int nIndex)
 	{
 	case 0:
 		m_TracePage.ShowWindow(SW_SHOW);
+		m_OnlineUsersPage.ShowWindow(SW_HIDE);
 		break;
 	case 1:
 		m_TracePage.ShowWindow(SW_HIDE);	
+		m_OnlineUsersPage.ShowWindow(SW_SHOW);
 		break;
 	case 2:
 		m_TracePage.ShowWindow(SW_HIDE);	
@@ -160,7 +164,9 @@ void CllzyFtpDlg::ActivatePage(int nIndex)
 	MoveChilds();
 }
 
-
+/************************************************************************/
+/* OutLookµ¥»÷                                                                     */
+/************************************************************************/
 void CllzyFtpDlg::OnClickOutlookBar(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	// get index of selected item

@@ -194,6 +194,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\OnlineUsersPage.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -229,6 +233,10 @@
 			</File>
 			<File
 				RelativePath=".\llzyFtpDlg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\OnlineUsersPage.h"
 				>
 			</File>
 			<File

@@ -139,6 +139,13 @@ BEGIN
     PUSHBUTTON      "Clear",IDC_CLEAR,122,179,50,14
 END
 
+IDD_PROPPAGE_ONLINE DIALOGEX 0, 0, 316, 198
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_ONLINE_USERS,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,0,0,315,198
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
