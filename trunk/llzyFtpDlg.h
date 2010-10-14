@@ -4,6 +4,7 @@
 #pragma once
 #include "afxcmn.h"
 #include "TracePage.h"
+#include "OnlineUsersPage.h"
 
 // CllzyFtpDlg dialog
 class CllzyFtpDlg : public CDialog
@@ -14,6 +15,7 @@ public:
 	virtual ~CllzyFtpDlg();
 
 	CTracePage	m_TracePage;
+	COnlineUsersPage	m_OnlineUsersPage;
 // Dialog Data
 	enum { IDD = IDD_LLZYFTP_DIALOG };
 
