@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "llzyFtp.h"
 #include "llzyFtpDlg.h"
+#include <afxpriv.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,6 +27,11 @@ CllzyFtpDlg::CllzyFtpDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CllzyFtpDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_bInitialized = FALSE;
+}
+
+CllzyFtpDlg::~CllzyFtpDlg()
+{
 }
 
 void CllzyFtpDlg::DoDataExchange(CDataExchange* pDX)
@@ -35,8 +41,18 @@ void CllzyFtpDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CllzyFtpDlg, CDialog)
+	ON_WM_SIZE()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_UPDATE_COMMAND_UI(ID_SERVER_STOP, OnUpdateServerStop)
+	ON_UPDATE_COMMAND_UI(ID_SERVER_START, OnUpdateServerStart)
+	ON_UPDATE_COMMAND_UI(ID_USER_ACCOUNTS, OnUpdateUserManeg)
+	ON_UPDATE_COMMAND_UI(ID_HELP_ABOUT, OnUpdateAbout)
+
+	ON_NOTIFY(NM_CLICK, IDC_OUTLOOKBAR, OnClickOutlookBar)
+
+	ON_MESSAGE(WM_KICKIDLE, OnKickIdle)
+	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -48,13 +64,16 @@ BOOL CllzyFtpDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 	SetupOutlookBar();
 	CreateStatusbar();
+
+
+	m_TracePage.Create(IDD_PROPPAGE_TRACE,this);
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-
+	m_bInitialized = TRUE;
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -94,6 +113,68 @@ HCURSOR CllzyFtpDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+void CllzyFtpDlg::OnSize(UINT nType, int cx, int cy) 
+{
+
+	if (m_bInitialized)
+		MoveChilds();
+}
+
+/************************************************************************/
+/* 移动子对话框                                                                     */
+/************************************************************************/
+void CllzyFtpDlg::MoveChilds()
+{
+	// position property pages 
+	CRect rcDlgs;
+
+	// get dialog area rect
+	GetDlgItem(IDC_DIALOG_AREA)->GetWindowRect(rcDlgs);
+
+	ScreenToClient(rcDlgs);
+	m_TracePage.MoveWindow(rcDlgs); 
+}
+
+void CllzyFtpDlg::ActivatePage(int nIndex)
+{
+	switch(nIndex)
+	{
+	case 0:
+		m_TracePage.ShowWindow(SW_SHOW);
+		break;
+	case 1:
+		m_TracePage.ShowWindow(SW_HIDE);	
+		break;
+	case 2:
+		m_TracePage.ShowWindow(SW_HIDE);	
+		break;
+	case 3:
+		m_TracePage.ShowWindow(SW_HIDE);	
+		break;
+	case 4:
+		m_TracePage.ShowWindow(SW_HIDE);	
+		break;
+	default:
+		break;
+	}
+	MoveChilds();
+}
+
+
+void CllzyFtpDlg::OnClickOutlookBar(NMHDR* pNMHDR, LRESULT* pResult) 
+{
+	// get index of selected item
+	int nIndex = m_OutlookBar.GetNextItem(-1, LVNI_ALL | LVNI_SELECTED); 
+
+	if(nIndex == -1)
+		return;
+
+	ActivatePage(nIndex);
+
+	*pResult = 0;
+}
+
+
 /************************************************************************/
 /* 开灯                                                                     */
 /************************************************************************/
@@ -129,7 +210,7 @@ void CllzyFtpDlg::SetOfflineLed(BOOL bOffline)
 /************************************************************************/
 void CllzyFtpDlg::SetupOutlookBar()
 {
-	COLORREF rgb_lkBar = RGB(57,128,244);	//系统任务栏颜色
+	COLORREF rgb_lkBar = RGB(76,149,75);	//背景颜色
 	// create Imagelist
 	m_ImageList.Create(32, 32, ILC_COLOR16|ILC_MASK,1, 4);
 	m_ImageList.SetBkColor(rgb_lkBar);//图标背景
@@ -256,4 +337,90 @@ BOOL CllzyFtpDlg::CreateStatusbar()
 	//这句RepositionBars()作用是把工具栏放置在指定的位置并显示出来
 	RepositionBars(AFX_IDW_CONTROLBAR_FIRST, AFX_IDW_CONTROLBAR_LAST, 0);
 	return TRUE;
+}
+
+
+void CllzyFtpDlg::OnUpdateServerStop(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(FALSE);
+}
+
+void CllzyFtpDlg::OnUpdateServerStart(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+}
+
+void CllzyFtpDlg::OnUpdateUserManeg(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+}
+
+void CllzyFtpDlg::OnUpdateAbout(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+}
+
+LRESULT CllzyFtpDlg::OnKickIdle(WPARAM wParam, LPARAM lParam)
+{
+	UpdateDialogControls(this, FALSE);
+
+	CCmdUI cmdUI;
+	// enable/disable toolbar buttons    
+	if (m_wndToolBar.IsWindowVisible()) 
+	{
+		// OnUpdateCmdUI expects a CFrameWnd pointer, so let's fake it ..
+		CFrameWnd *pParent = (CFrameWnd *)this;
+		if (pParent)
+			m_wndToolBar.OnUpdateCmdUI(pParent, TRUE);
+	} 
+
+	return Default();
+}
+
+
+
+/************************************************************************/
+/* 工具栏提示                                                                     */
+/************************************************************************/
+BOOL CllzyFtpDlg::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
+{
+	ASSERT(pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW);
+
+	// need to handle both ANSI and UNICODE versions of the message
+	TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+	TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
+	TCHAR szFullText[256];
+	CString cstTipText;
+	CString cstStatusText;
+
+	UINT nID = pNMHDR->idFrom;
+	if (pNMHDR->code == TTN_NEEDTEXTA && (pTTTA->uFlags & TTF_IDISHWND) ||
+		pNMHDR->code == TTN_NEEDTEXTW && (pTTTW->uFlags & TTF_IDISHWND))
+	{
+		// idFrom is actually the HWND of the tool
+		nID = ((UINT)(WORD)::GetDlgCtrlID((HWND)nID));
+	}
+
+	if (nID != 0) // will be zero on a separator
+	{
+		AfxLoadString(nID, szFullText);
+		// this is the command id, not the button index
+		AfxExtractSubString(cstTipText, szFullText, 1, '\n');
+		AfxExtractSubString(cstStatusText, szFullText, 0, '\n');
+	}
+
+	// Non-UNICODE Strings only are shown in the tooltip window...
+	if (pNMHDR->code == TTN_NEEDTEXTA)
+		lstrcpyn(pTTTA->szText, cstTipText,
+		(sizeof(pTTTA->szText)/sizeof(pTTTA->szText[0])));
+	else
+		_mbstowcsz(pTTTW->szText, cstTipText,
+		(sizeof(pTTTW->szText)/sizeof(pTTTW->szText[0])));
+	*pResult = 0;
+
+	// bring the tooltip window above other popup windows
+	::SetWindowPos(pNMHDR->hwndFrom, HWND_TOP, 0, 0, 0, 0, SWP_NOACTIVATE|SWP_NOSIZE|SWP_NOMOVE);
+
+	// message was handled
+	return TRUE;    
 }
