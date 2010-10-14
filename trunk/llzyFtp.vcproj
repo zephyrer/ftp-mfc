@@ -250,6 +250,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\res\led_gree.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\res\led_off.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\res\led_red.ico"
+				>
+			</File>
+			<File
 				RelativePath=".\res\llzyFtp.ico"
 				>
 			</File>
@@ -271,6 +283,18 @@
 			</File>
 			<File
 				RelativePath=".\res\statistics.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\res\toolbar1.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\toolbard.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\toolbare.bmp"
 				>
 			</File>
 			<File

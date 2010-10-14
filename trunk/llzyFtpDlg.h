@@ -23,8 +23,22 @@ public:
 protected:
 	HICON m_hIcon;
 
+	//LED灯
+	void SetOnlineLed(BOOL bOnline);
+	void SetOfflineLed(BOOL bOffline);
+	//左侧工具条
 	void SetupOutlookBar();
 	CImageList m_ImageList;
+
+	//创建工具栏和状态条
+	BOOL CreateStatusbar();
+	CStatusBar m_wndStatusBar;
+	CToolBar m_wndToolBar;
+
+	CImageList    m_imageToolBar;
+	CImageList    m_imageToolBarDisable;
+	void InitToolBar();
+
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
