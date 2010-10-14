@@ -28,6 +28,13 @@ void CSecurityPage::DoDataExchange(CDataExchange* pDX)
 BOOL CSecurityPage::OnInitDialog()
 {
 	CDialog::OnInitDialog();
+
+	if (!AfxSocketInit())
+	{
+		AfxMessageBox("Socket≥ı ºªØ ß∞‹£°");
+		return FALSE;
+	}
+
 	// get list of all ip addresses in use by this system (only show first two...)
 	char szHostName[128];
 	HOSTENT *lpHost=NULL;
