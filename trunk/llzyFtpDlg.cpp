@@ -78,6 +78,8 @@ BOOL CllzyFtpDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
+	
+//	m_ConfigurationPage.m_nPort = AfxGetApp()->GetProfileInt("ftp_Settings", "Port", 1988);
 	// TODO: Add extra initialization here
 	m_bInitialized = TRUE;
 	return TRUE;  // return TRUE  unless you set the focus to a control
