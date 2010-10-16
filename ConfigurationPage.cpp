@@ -19,8 +19,8 @@ CConfigurationPage::CConfigurationPage(CWnd* pParent /*=NULL*/)
 	m_nPort = AfxGetApp()->GetProfileInt("ftp_Settings", "Port", 1988);
 	m_nMaxUsers = AfxGetApp()->GetProfileInt("ftp_Settings", "MaxUsers", 1000);
 	m_nKeeptime = AfxGetApp()->GetProfileInt("ftp_Settings", "Keeptime", 5);
-	m_strWelcomeMessage = AfxGetApp()->GetProfileString("ftp_Settings", "WelcomeMsg", "爷，您来了");
-	m_strGoodbyeMessage = AfxGetApp()->GetProfileString("ftp_Settings", "GoobyeMsg", "再来打死丫！");
+	m_strWelcomeMessage = AfxGetApp()->GetProfileString("ftp_Settings", "WelcomeMsg", "哎唷，不错哦!");
+	m_strGoodbyeMessage = AfxGetApp()->GetProfileString("ftp_Settings", "GoobyeMsg", "再来抽死丫!");
 
 	m_bModified = FALSE;
 }
